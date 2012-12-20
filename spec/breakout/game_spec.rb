@@ -11,17 +11,22 @@ module Breakout
   # If you’re accustomed to xUnit tools like Test::Unit, you can
   # think of an ExampleGroup as being akin to a TestCase.
     describe "#start" do
-      it "sends a welcome message" do
+      let(:output) { double('output'). as_null_object }
+      let(:game) { Game.new(output) }
+      # it "sends a welcome message" do
       # The it() method creates an example. Technically, it’s an
       # instance of the ExampleGroup returned by describe()
-        output = double('output').as_null_object
+        # output = double('output').as_null_object
         # GIVEN. Test double stand in for the real STDOUT
         # Uses RSpec dynamic test double framework, RSpec::Mocks
         # to create a dynmaic test double on the first
         # line of the example
-        game = Game.new(output)
+        # @game = Game.new(@output)
         # GIVEN. Create a Game object, passing it the test double
         # as an argument
+      # end
+
+      it "sends a welcome message" do
         output.should_receive(:puts).with('Welcome to Breakout')
         # MESSAGE EXPECTATION. The output object should
         # receive the puts message with the string "Welcome to Breakout"
@@ -31,7 +36,7 @@ module Breakout
         # Call game.start, output should receive puts("Welcome to Breakout")
       end
       it "prompts for the first guess" do
-        output = double('output').as_null_object
+        # output = double('output').as_null_object
         # Caused the first test to fail.
         # We’ve told the double in the first example to expect puts() with
         # “Welcome to Breakout!” and we’ve satisfied that requirement, but
@@ -40,7 +45,7 @@ module Breakout
         # Similarly, the double in the second example expects “Enter guess:”
         # but the first message it gets is “Welcome to Codebreaker!”
         # Solution: Add as_null_object
-        game = Game.new(output)
+        # game = Game.new(output)
 
         output.should_receive(:puts).with('Enter guess:')
 
